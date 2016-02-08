@@ -8,6 +8,7 @@
 #   HUBOT_SUMOLOGIC_ACCESS_KEY
 #
 # Commands:
+#   hubot sumo help - hubot commands for sumologic integration
 #   hubot sumo dashboards - return list of dashboards
 #   hubot sumo dashboard <id> data - return list of dashboards
 #   hubot sumo search count <query> - return total count and count of category and host for query (last 60 minutes)
@@ -80,6 +81,10 @@ module.exports = (robot) ->
       return
     msg.send sumoLogicUiBaseUrl
 
+  robot.respond /sumo help/i, (msg) ->
+    cmds = renamedHelpCommands(robot)
+    msg.send cmds.join("\n")
+
   formatDashboardsOutput = (db) ->
     list = ""
     for i in db.dashboards
@@ -117,3 +122,11 @@ module.exports = (robot) ->
     for i in search
       list += "Count #{i._count}, Category: #{i._sourcecategory}, Host: #{i._sourcehost} \n"
     list
+
+renamedHelpCommands = (robot) ->
+  robot_name = robot.alias or robot.name
+  cmds = robot.helpCommands()
+  cmds = (cmd for cmd in cmds when cmd.match(/hubot sumo/))
+  help_commands = cmds.map (command) ->
+    command.replace /^hubot/i, robot_name
+  help_commands.sort()

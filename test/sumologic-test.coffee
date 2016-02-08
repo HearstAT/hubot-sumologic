@@ -27,3 +27,5 @@ describe 'sumologic', ->
   it 'registers a sumo ui url listener', ->
     expect(@robot.respond).to.have.been.calledWith(/sumo ui url/i)
 
+  it 'registers a sumo help listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/sumo help/i)
