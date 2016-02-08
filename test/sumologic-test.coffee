@@ -10,10 +10,20 @@ describe 'sumologic', ->
       respond: sinon.spy()
       hear: sinon.spy()
 
-    require('../src/sumologic')(@robot)
+    require('../src/scripts/sumologic')(@robot)
 
-  it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/hello/)
+  it 'registers a sumo dashboards listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/sumo dashboards/i)
 
-  it 'registers a hear listener', ->
-    expect(@robot.hear).to.have.been.calledWith(/orly/)
+  it 'registers a sumo dashboard id data listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/sumo dashboard (.+) data/i)
+
+  it 'registers a sumo search count query last minutes listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/sumo search count (.+) last (.+)$/i)
+
+  it 'registers a sumo search count query listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/sumo search count (.+)?$/i)
+
+  it 'registers a sumo ui url listener', ->
+    expect(@robot.respond).to.have.been.calledWith(/sumo ui url/i)
+
