@@ -1,4 +1,5 @@
 # hubot-sumologic
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 Sumologic integration for Hubot
 
