@@ -94,3 +94,12 @@ hubot>> Count 50, Category: linux_apps_logs, Host: example-host1.com
 
 * https://service.sumologic.com/help/Generating_Collector_Installation_API_Keys.htm
 * https://github.com/SumoLogic/sumo-api-doc/wiki
+
+
+[npm-url]: https://www.npmjs.org/package/hubot-sumologic
+[npm-image]: http://img.shields.io/npm/v/hubot-sumologic.svg?style=flat
+[travis-url]: https://travis-ci.org/HearstAT/hubot-sumologic
+[travis-image]: https://travis-ci.org/HearstAT/hubot-sumologic.svg?branch=master
+[coveralls-url]: https://coveralls.io/r/HearstAT/hubot-sumologic
+[coveralls-image]: http://img.shields.io/coveralls/HearstAT/hubot-sumologic/master.svg?style=flat
+
