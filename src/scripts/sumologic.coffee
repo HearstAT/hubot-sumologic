@@ -8,7 +8,6 @@
 #   HUBOT_SUMOLOGIC_ACCESS_KEY
 #
 # Commands:
-#   hubot sumo help - hubot commands for sumologic integration
 #   hubot sumo dashboards - return list of dashboards
 #   hubot sumo dashboard <id> data - return list of dashboards
 #   hubot sumo search count <query> - return total count and count of category and host for query (last 60 minutes)
@@ -104,7 +103,7 @@ module.exports = (robot) ->
       if d.id == id/1
         for t in d.dashboardMonitors
           titles[t.id] = t.title
-    
+    debugger
     for i in db.dashboardMonitorDatas
       headers = ""
       for f in i.fields
