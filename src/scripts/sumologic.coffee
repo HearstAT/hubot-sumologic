@@ -43,11 +43,16 @@ module.exports = (robot) ->
     msg.finish()
     if sumologic.missingEnvironmentForApi(msg)
       return
-    sumologic.getDashboardByID msg.match[1], (err, dashboards) ->
+    sumologic.getDashboards msg.match[3], (err, dashboards) ->
       if err?
         robot.emit 'error', err, msg
         return
-      msg.send formatDashboardDataOutput(dashboards)
+      else 
+        sumologic.getDashboardByID msg.match[1], (err, dashboard) ->
+          if err?
+            robot.emit 'error', err, msg
+            return
+          msg.send formatDashboardDataOutput(dashboard, dashboards, msg.match[1])
 
   robot.respond /sumo search count (.+) last (.+)$/i, (msg) ->
     msg.finish()
@@ -91,9 +96,15 @@ module.exports = (robot) ->
       list += "ID: #{i.id}, Name: #{i.title} \n"
     list
 
-  formatDashboardDataOutput = (db) ->
+  formatDashboardDataOutput = (db, dbs, id) ->
     list = ""
-    headers = ""
+    titles = {}
+    # cycle through the panels on this dashboard
+    for d in dbs.dashboards
+      if d.id == id/1
+        for t in d.dashboardMonitors
+          titles[t.id] = t.title
+    
     for i in db.dashboardMonitorDatas
       headers = ""
       for f in i.fields
@@ -113,6 +124,7 @@ module.exports = (robot) ->
             else
               data += " #{v} |"
           data += "\n"
+        list += "#{titles[i.id]} \n"
         list += "#{headers} \n"
         list += "#{data} \n"
     list
