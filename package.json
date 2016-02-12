@@ -1,7 +1,7 @@
 {
   "name": "hubot-sumologic",
   "description": "Sumologic integration for Hubot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "HearstAT <atat@hearst.com>",
   "license": "MIT",
 
