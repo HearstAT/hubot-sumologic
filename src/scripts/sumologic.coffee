@@ -110,6 +110,7 @@ module.exports = (robot) ->
       for f in i.fields
         headers += "**#{f.name}** "
       if i.records.length <= 0
+        list += "#{titles[i.id]} \n"
         list += "#{headers} \n"
         list += "ID: #{i.id} no results \n\n"
       else
