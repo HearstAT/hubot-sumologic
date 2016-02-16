@@ -101,6 +101,7 @@ module.exports = (robot) ->
     # cycle through the panels on this dashboard
     for d in dbs.dashboards
       if d.id == id/1
+        list += "Dashboard: #{d.title} \n\n"
         for t in d.dashboardMonitors
           titles[t.id] = t.title
     debugger
